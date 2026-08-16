@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Product — Crochet by Neha</title>
+<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" class="favlogo">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="announce">
+  Call or WhatsApp to order — <a data-whatsapp-number href="#"></a> &nbsp;•&nbsp; Hotline: <a data-hotline-number href="#"></a>
+</div>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.jpg" alt="Crochet by Neha logo" class="mark-img"> Crochet by Neha</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">&#9776;</button>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="trending.html">Trending</a>
+      <a href="track.html">Track Order</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a data-pathao-link target="_blank" rel="noopener">Buy on Pathao ↗</a>
+      <a class="nav-cta" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </nav>
+</header>
+
+<div class="wrap" style="padding-top:20px;">
+  <a href="shop.html" class="btn btn-line" style="padding:7px 14px;font-size:.8rem;">← Back to shop</a>
+</div>
+
+<div class="wrap product-detail" id="pd-root"></div>
+
+<section class="alt" id="related-section" style="display:none;">
+  <div class="wrap">
+    <div class="section-head"><h2>You might also like</h2></div>
+    <div class="grid" id="related-grid"></div>
+  </div>
+</section>
+
+<footer class="site" id="footer-slot"></footer>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/include.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+  let selectedColorIdx = 0;
+
+  document.getElementById("page-title").textContent = product.name + " — Crochet by Neha";
+
+  function renderColorPicker(){
+    if (!product.colors || !product.colors.length) return "";
+    return `
+      <div class="pd-colors">
+        <h4>Choose a colourway</h4>
+        <div class="pd-swatch-row" id="pd-swatch-row">
+          ${product.colors.map((c,i) => `
+            <button type="button" class="pd-swatch ${i === selectedColorIdx ? 'active' : ''}" data-idx="${i}">
+              <span class="dot" style="background:${c.hex}"></span>
+              <span>${c.name}</span>
+            </button>
+          `).join("")}
+        </div>
+        <p class="pd-selected-color">Selected: <strong id="pd-selected-name">${product.colors[selectedColorIdx].name}</strong></p>
+        <p class="pd-custom-note">Don't see your exact shade? Message us on WhatsApp with a photo or colour name — Neha can usually match it.</p>
+      </div>`;
+  }
+
+  function renderPD(){
+    document.getElementById("pd-root").innerHTML = `
+      <div class="pd-image">
+        <img src="${product.image}" alt="${product.name}">
+      </div>
+      <div class="pd-info">
+        <p class="pd-cat">${product.categoryLabel} ${product.trending ? '&nbsp;·&nbsp; 🔥 Trending' : ''}</p>
+        <h1 class="pd-name">${product.name}</h1>
+        <p class="card-rating" style="margin-bottom:10px;"><span class="stars">${starString(product.rating)}</span> <span class="rating-num">${product.rating.toFixed(1)}</span> <span class="rating-count">(${product.reviews} reviews)</span></p>
+        <div class="pd-price">
+          <span class="now">${formatRs(product.price)}</span>
+          <span class="was">${formatRs(product.original)}</span>
+          <span class="off">-${product.discount}%</span>
+        </div>
+        <p class="pd-desc">${product.long}</p>
+        ${renderColorPicker()}
+        <div class="pd-actions">
+          <a class="btn btn-whatsapp btn-lg" id="pd-order-link" href="${whatsappOrderLink(product, product.colors ? product.colors[selectedColorIdx].name : null)}" target="_blank" rel="noopener">Order this colourway on WhatsApp</a>
+          <a class="btn btn-pathao btn-lg" data-pathao-link target="_blank" rel="noopener">Buy on Pathao</a>
+        </div>
+        <div class="pd-meta">
+          <p><strong>Zero initial stock:</strong> every piece is made after payment, and takes roughly 3–4 weeks depending on the item.</p>
+          <p style="margin-top:8px;"><strong>Free colour customization:</strong> pick a colourway above, or ask for a fully custom shade — it's included, just tell us on WhatsApp.</p>
+        </div>
+      </div>
+    `;
+
+    const row = document.getElementById("pd-swatch-row");
+    if (row) {
+      row.addEventListener("click", (e) => {
+        const btn = e.target.closest(".pd-swatch");
+        if (!btn) return;
+        selectedColorIdx = parseInt(btn.dataset.idx, 10);
+        row.querySelectorAll(".pd-swatch").forEach(s => s.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("pd-selected-name").textContent = product.colors[selectedColorIdx].name;
+        document.getElementById("pd-order-link").href = whatsappOrderLink(product, product.colors[selectedColorIdx].name);
+      });
+    }
+  }
+  renderPD();
+
+  const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0,4);
+  if (related.length){
+    document.getElementById("related-section").style.display = "block";
+    document.getElementById("related-grid").innerHTML = related.map(productCardHTML).join("");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crochet by Neha — Handmade Crochet Wearables & Home Accents</title>
+<meta name="description" content="Crochet by Neha is a small handmade crochet studio — bags, wearables, keychains and bouquets, made to order, colour-customized, and shipped with love.">
+<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" class="favlogo">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="announce">
+  Call or WhatsApp to order — <a data-whatsapp-number href="#"></a> &nbsp;•&nbsp; Hotline: <a data-hotline-number href="#"></a>
+</div>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.jpg" alt="Crochet by Neha logo" class="mark-img"> Crochet by Neha</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">&#9776;</button>
+    <div class="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="trending.html">Trending</a>
+      <a href="track.html">Track Order</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a data-pathao-link target="_blank" rel="noopener">Buy on Pathao ↗</a>
+      <a class="nav-cta" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Artisan Crochet Studio</p>
+      <h1>Elegance in every <em>loop</em>.</h1>
+      <p class="lede">Handmade wearables, bags, and home accents, hooked one stitch at a time by Neha. Every piece is made to order and colour-customized just for you — no two are exactly alike.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid btn-lg" href="shop.html">Browse the shop</a>
+        <a class="btn btn-whatsapp btn-lg" data-whatsapp-link target="_blank" rel="noopener">Order on WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/img/ocean-bag.jpg" alt="Handmade crochet ocean bag with starfish and jellyfish details">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">🔥 What everyone's ordering</p>
+        <h2>Trending &amp; best sellers</h2>
+      </div>
+      <a class="btn btn-line" href="trending.html">See all trending →</a>
+    </div>
+    <div class="trend-strip" id="trend-strip"></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Fresh off the hook</p>
+        <h2>Featured pieces</h2>
+      </div>
+      <a class="btn btn-line" href="shop.html">See full shop →</a>
+    </div>
+    <div class="grid" id="featured-grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap about-grid">
+    <div>
+      <img src="assets/img/sunflower-hairbun.jpg" alt="Sunflower hairbun worn in dark hair" style="border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow);">
+    </div>
+    <div>
+      <p class="eyebrow">About the studio</p>
+      <h2>A cozy shop run by two people, one hook.</h2>
+      <p>Crochet by Neha is a small handmade studio started by Neha, who hand-makes every single piece with soft, high-quality yarn — plushies, wearables, bags, and home decor, one loop at a time. Her partner Sabin runs the shop end: orders, tracking, and every message that comes through.</p>
+      <div class="info-cols">
+        <div class="info-col">
+          <h4>Neha's craft</h4>
+          <ul>
+            <li>Handmakes every piece with care</li>
+            <li>Uses soft, high-quality yarn</li>
+            <li>Plushies, wearables, bags &amp; home decor</li>
+          </ul>
+        </div>
+        <div class="info-col">
+          <h4>Sabin &amp; the shop</h4>
+          <ul>
+            <li>Manages the website &amp; orders</li>
+            <li>Helps track packages</li>
+            <li>Answers your messages</li>
+          </ul>
+        </div>
+        <div class="info-col">
+          <h4>Why shop here</h4>
+          <ul>
+            <li>Every item is unique</li>
+            <li>Colour-customize almost anything</li>
+            <li>Support a small local dream</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Loved by customers</p>
+        <h2>What people are saying</h2>
+      </div>
+      <a class="btn btn-line" href="reviews.html">Read all reviews →</a>
+    </div>
+    <div class="review-strip" id="review-strip"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="notice">
+      <strong>Please note:</strong> we keep zero initial stock. Every order is made after payment, and handmade pieces take roughly 3–4 weeks depending on the item. Follow along on TikTok or Instagram for progress updates.
+    </div>
+  </div>
+</section>
+
+<footer class="site" id="footer-slot"></footer>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/include.js"></script>
+<script>
+  document.getElementById("featured-grid").innerHTML =
+    PRODUCTS.slice(0,4).map(productCardHTML).join("");
+
+  document.getElementById("trend-strip").innerHTML =
+    PRODUCTS.filter(p => p.trending).map(productCardHTML).join("");
+
+  document.getElementById("review-strip").innerHTML =
+    REVIEWS.map(r => `
+      <div class="review-card">
+        <span class="stars">${starString(r.rating)}</span>
+        <p class="r-item">${r.item}</p>
+        <p class="r-text">"${r.text}"</p>
+        <p class="r-name">— ${r.name}</p>
+      </div>
+    `).join("");
+</script>
+</body>
+</html>

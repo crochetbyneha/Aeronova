@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Reviews — Crochet by Neha</title>
+<meta name="description" content="Read what customers say about their handmade, colour-customized crochet pieces from Crochet by Neha.">
+<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" class="favlogo">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="announce">
+  Call or WhatsApp to order — <a data-whatsapp-number href="#"></a> &nbsp;•&nbsp; Hotline: <a data-hotline-number href="#"></a>
+</div>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.jpg" alt="Crochet by Neha logo" class="mark-img"> Crochet by Neha</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">&#9776;</button>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="trending.html">Trending</a>
+      <a href="track.html">Track Order</a>
+      <a href="reviews.html" class="active">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a data-pathao-link target="_blank" rel="noopener">Buy on Pathao ↗</a>
+      <a class="nav-cta" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </nav>
+</header>
+
+<section style="padding-bottom:0;">
+  <div class="wrap">
+    <p class="eyebrow">Customer love</p>
+    <h1 style="font-size:clamp(1.9rem,4vw,2.6rem);max-width:22ch;">What people say about their pieces.</h1>
+    <p style="max-width:56ch;color:#4c473f;" id="avg-line"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="review-grid" id="review-grid"></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap" style="text-align:center;">
+    <p class="eyebrow">Ordered from us?</p>
+    <h2 style="max-width:26ch;margin:0 auto .5em;">Leave a review on WhatsApp</h2>
+    <p style="max-width:52ch;margin:0 auto 20px;color:#4c473f;">Send us a photo of your piece and a few words — we love featuring customer photos and might add yours to this page.</p>
+    <a class="btn btn-whatsapp btn-lg" data-whatsapp-link target="_blank" rel="noopener">Share your review</a>
+  </div>
+</section>
+
+<footer class="site" id="footer-slot"></footer>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/include.js"></script>
+<script>
+  const avg = (REVIEWS.reduce((s,r) => s + r.rating, 0) / REVIEWS.length).toFixed(1);
+  document.getElementById("avg-line").innerHTML =
+    `<span class="stars" style="font-size:1.1rem;">${starString(Math.round(avg))}</span> ${avg} average from ${REVIEWS.length}+ happy customers`;
+
+  document.getElementById("review-grid").innerHTML = REVIEWS.map(r => `
+    <div class="review-card">
+      <span class="stars">${starString(r.rating)}</span>
+      <p class="r-item">${r.item}</p>
+      <p class="r-text">"${r.text}"</p>
+      <p class="r-name">— ${r.name}</p>
+    </div>
+  `).join("");
+</script>
+</body>
+</html>

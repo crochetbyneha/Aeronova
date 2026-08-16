@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trending & Best Sellers — Crochet by Neha</title>
+<meta name="description" content="See the most-loved, top-selling handmade crochet pieces from Crochet by Neha — ranked by customer orders and reviews.">
+<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" class="favlogo">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.tag-trend{display:none;}</style>
+</head>
+<body>
+
+<div class="announce">
+  Call or WhatsApp to order — <a data-whatsapp-number href="#"></a> &nbsp;•&nbsp; Hotline: <a data-hotline-number href="#"></a>
+</div>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.jpg" alt="Crochet by Neha logo" class="mark-img"> Crochet by Neha</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">&#9776;</button>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="trending.html" class="active">Trending</a>
+      <a href="track.html">Track Order</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a data-pathao-link target="_blank" rel="noopener">Buy on Pathao ↗</a>
+      <a class="nav-cta" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </nav>
+</header>
+
+<section style="padding-top:44px;padding-bottom:0;">
+  <div class="wrap">
+    <p class="eyebrow">🔥 Top selling this month</p>
+    <h1 style="font-size:clamp(1.9rem,4vw,2.6rem);max-width:24ch;">Trending &amp; best-selling pieces.</h1>
+    <p style="max-width:56ch;color:#4c473f;">Ranked by how many customers have ordered and reviewed each piece — these are the crochet pieces people keep coming back for.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="grid" id="trending-grid"></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="notice">
+      <strong>Popular for a reason:</strong> every trending piece can still be fully colour-customized — pick a swatch on the product page, or ask for a completely custom shade on WhatsApp.
+    </div>
+  </div>
+</section>
+
+<footer class="site" id="footer-slot"></footer>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/include.js"></script>
+<script>
+  const ranked = PRODUCTS.filter(p => p.trending).sort((a,b) => b.reviews - a.reviews);
+  document.getElementById("trending-grid").innerHTML = ranked.map((p, i) => {
+    const card = productCardHTML(p);
+    // inject a rank badge right after the opening <a class="card-media"> tag
+    return card.replace('class="card-media">', `class="card-media"><span class="rank-badge">#${i+1}</span>`);
+  }).join("");
+</script>
+</body>
+</html>

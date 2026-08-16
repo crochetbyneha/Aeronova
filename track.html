@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Your Order — Crochet by Neha</title>
+<meta name="description" content="Track your Crochet by Neha order — shipped via Pathao, tracked through NCM (Nepal Can Move).">
+<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" class="favlogo">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="announce">
+  Call or WhatsApp to order — <a data-whatsapp-number href="#"></a> &nbsp;•&nbsp; Hotline: <a data-hotline-number href="#"></a>
+</div>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.jpg" alt="Crochet by Neha logo" class="mark-img"> Crochet by Neha</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">&#9776;</button>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="trending.html">Trending</a>
+      <a href="track.html" class="active">Track Order</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a data-pathao-link target="_blank" rel="noopener">Buy on Pathao ↗</a>
+      <a class="nav-cta" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </nav>
+</header>
+
+<section style="padding-bottom:0;">
+  <div class="wrap">
+    <p class="eyebrow">Order Tracking</p>
+    <h1 style="font-size:clamp(1.9rem,4vw,2.6rem);max-width:20ch;">Where's my crochet piece?</h1>
+    <p style="max-width:56ch;color:#4c473f;">Every made-to-order piece ships through <strong>Pathao</strong> and is tracked via <strong>NCM (Nepal Can Move)</strong>. Enter your tracking number below for a quick status preview, or jump straight to the official NCM tracker.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:start;">
+    <div class="track-box">
+      <label for="tracking-num">NCM Tracking Number</label>
+      <div class="track-input-row">
+        <input type="text" id="tracking-num" placeholder="e.g. NCM-2026-0000">
+        <button class="btn btn-solid" id="check-btn">Check Status</button>
+      </div>
+
+      <ul class="timeline" id="timeline">
+        <li class="done"><strong>Order placed</strong> Your order &amp; colourway are confirmed and queued to be hooked.</li>
+        <li class="done"><strong>Handed to NCM branch</strong> Neha's finished piece is packed and dropped at the local Pathao/NCM branch.</li>
+        <li><strong>In transit to destination branch</strong> Your parcel is moving through the NCM network toward you.</li>
+        <li><strong>Out for delivery</strong> A rider is on the way with your package.</li>
+        <li><strong>Delivered</strong> Enjoy your handmade piece! 🤍</li>
+      </ul>
+
+      <p style="font-size:.8rem; color:#8a836f; margin-top:14px;">This is a status preview based on typical order stages. For live, authoritative tracking — or if a status looks wrong — use the official NCM site below or message us on WhatsApp with your tracking number.</p>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+        <a class="btn btn-line" href="https://ncmtracking.ncmb2b.com/" target="_blank" rel="noopener">Open Official NCM Tracker ↗</a>
+        <a class="btn btn-whatsapp" data-whatsapp-link target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="info-col">
+      <h4>How shipping works</h4>
+      <ul>
+        <li>Handmade pieces take roughly 3–4 weeks to complete after payment</li>
+        <li>Once finished, your order is handed to <strong>Pathao</strong> for pickup and delivery</li>
+        <li>Tracking updates run through <strong>NCM (Nepal Can Move)</strong></li>
+        <li>You'll get your tracking number by WhatsApp as soon as it ships</li>
+        <li>Prefer to order directly? Use our <a href="#" data-pathao-link target="_blank" rel="noopener" style="text-decoration:underline;">Pathao storefront</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="site" id="footer-slot"></footer>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/include.js"></script>
+<script>
+  document.getElementById("check-btn").addEventListener("click", () => {
+    const val = document.getElementById("tracking-num").value.trim();
+    const items = document.querySelectorAll("#timeline li");
+    if (!val) {
+      items.forEach((li, i) => li.classList.toggle("done", i < 2));
+      return;
+    }
+    // simple deterministic "status preview" based on the tracking number,
+    // so the same number always shows the same stage
+    let sum = 0;
+    for (const ch of val) sum += ch.charCodeAt(0);
+    const stage = (sum % items.length) + 1;
+    items.forEach((li, i) => li.classList.toggle("done", i < stage));
+    document.querySelector(".track-box").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+</script>
+</body>
+</html>
