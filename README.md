@@ -1,6 +1,12 @@
 # Crochet by Neha — website
 
-Static site (no build step). Ready to host on GitHub Pages at crochetbyneha.github.io.
+Static site (no build step). Ready to host on GitHub Pages at crochetbyneha.github.io.in
+
+n
+
+
+
+
 
 ## Put this on GitHub Pages
 1. Upload every file in this folder to your `crochetbyneha.github.io` repo root, keeping the `assets/` folder intact.
