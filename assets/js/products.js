@@ -228,12 +228,12 @@ const PRODUCTS = [
 
 /* Testimonials shown on the homepage strip and the full Reviews page */
 const REVIEWS = [
-  { name: "Aastha R.", item: "Crochet Ocean Bag", rating: 5, text: "Ahileko trending ocean bag magako maile best lagyo thankyou ramro service thiyo loved it will visit next time too." },
+  { name: "Aastha R.", item: "Crochet Ocean Bag", rating: 5, text: "Ahileko trending ocean bag magako maile best lagyo thankyou ramro service thiyo loved it will visit next time too  },
   { name: "Priska T.", item: "Cute Bird Keychain", rating: 5, text: "Baini ko lagi kindeko ramro thiyo ❤️" },
-  { name: "Sneha M.", item: "Rose Bouquet Blanket", rating: 5, text: "Gave this to my mummi best thankyou" },
-  { name: "Nisha S.", item: "Crochet Shrug", rating: 5, text: "Fits exactly like the photos, the bow detail is adorable in person. Shipped safely via Pathao with tracking updates the whole way." },
-  { name: "Samana P.", item: "Sunflower Hairbun", rating: 4, text: "Beautiful piece, holds my hair really well. Took a little longer than 3 weeks but Neha kept me updated the whole time." },
-  { name: "Bimala G.", item: "Mesh Bag", rating: 5, text: "Custom-matched the bow colour to my outfit for a wedding and it turned out perfect. Compliments all night." }
+  { name: "Sneha M.", item: "Rose Bouquet Blanket", rating: 5, text: "Gave this to my mum instead of real flowers and she cried a little. It's now folded on her bed as a throw." },
+  { name: "Bibek S.", item: "Crochet Shrug", rating: 5, text: "Fits exactly like the photos, the bow detail is adorable in person. Shipped safely via Pathao with tracking updates the whole way." },
+  { name: "Kriti P.", item: "Sunflower Hairbun", rating: 4, text: "Beautiful piece, holds my hair really well. Took a little longer than 3 weeks but Neha kept me updated the whole time." },
+  { name: "Anmol G.", item: "Mesh Bag", rating: 5, text: "Custom-matched the bow colour to my outfit for a wedding and it turned out perfect. Compliments all night." }
 ];
 
 function formatRs(n) {
