@@ -5,8 +5,7 @@ Static site (no build step). Ready to host on GitHub Pages at crochetbyneha.gith
 ## Put this on GitHub Pages
 1. Upload every file in this folder to your `crochetbyneha.github.io` repo root, keeping the `assets/` folder intact.
 2. Settings → Pages → Source → Deploy from a branch → `main` / root.
-3. Visit https://crochetbyneha.github.io/
-
+3. Visit https://crochetbyneha.github.io/alalallala
 ## Editing content
 Everything — prices, photos, descriptions, colourways, WhatsApp number, Pathao link, reviews — lives in `assets/js/products.js`.
 
