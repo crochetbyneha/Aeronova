@@ -62,7 +62,7 @@ const PRODUCTS = [
   },
   {
     id: "scrunchies",
-    name: "Scrunchies (Set of 3)",
+    name: "Scrunchies ",
     category: "wearables",
     categoryLabel: "Wearables & Accessories",
     price: 222,
